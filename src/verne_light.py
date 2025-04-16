@@ -8,10 +8,7 @@ Contact: Bradley Kavanagh, bradkav@gmail.com
 """
 
 import numpy as np
-try:
-    from scipy.integrate import simps
-except ImportError:
-    from scipy.integrate import simpson as simps
+from scipy.integrate import simps
 
 import scipy.special
 import os
@@ -76,7 +73,6 @@ def ERmax(mX, mA, v):
 #velocity distribution and isodetection angle
 def generate_theta_grid(v, gamma):
    fudge = 1e-6
-   #fudge = 0
     
    A = (MB.vesc**2 - v**2 - MB.ve**2)/(2*(v + fudge)*MB.ve)
    A = np.clip(A, -1, 1)
@@ -91,7 +87,7 @@ def generate_theta_grid(v, gamma):
    thetas = theta_min + 0.5*(np.cos(x_list[::-1]) + 1)*(theta_max - theta_min)
    
    return thetas
-   
+    
 
 def Tabulate_Column_Density(depth, target="full"):
     global X_grid
@@ -182,7 +178,7 @@ def Calc_p_refl_grid(thetas, v, sigma_p, m_x, target, interaction="SI"):
         #Distance to the detector divided by mean free path (averaged over trajectory)
         L1_over_lmbda_avg = inv_mean_free_path_avg_r(thetas[i], params)
         expL1 = np.exp(-L1_over_lmbda_avg)
-        P2_L1 = L1_over_lmbda_avg/2*expL1 - expL1/4 + expL1**3/4 #VERIFIED
+        P2_L1 = L1_over_lmbda_avg/2*expL1 - expL1/4 + expL1**3/4
         P0_L1 = expL1
 
         p_refl[i] = (1-P0_L2-P2_L2)*(P0_L1+P2_L1)
