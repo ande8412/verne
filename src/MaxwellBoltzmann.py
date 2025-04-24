@@ -11,9 +11,9 @@ phi_interp = None
 #------- Velocity distribution stuff----------
 #----------------------------------------------
 
-
+v0 = 238
 vesc = 544.0 #Escape velocity
-sigmav = 156.0#238/np.sqrt(2) #156.0  #Velocity dispersion (v_0/sqrt(2))
+sigmav =v0 /np.sqrt(2) #Velocity dispersion (v_0/sqrt(2))
 ve = 250.2#263.0 #232.0  #Earth peculiar velocity around GC
 
 
